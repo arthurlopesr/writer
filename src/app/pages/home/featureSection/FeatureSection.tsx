@@ -1,4 +1,4 @@
-import { Step } from "@/app/components/step/Step";
+import { Step } from "@/app/components/ui/step/Step";
 import Image from "next/image";
 
 export function FeatureSection() {
