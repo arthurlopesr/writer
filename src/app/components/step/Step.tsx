@@ -21,6 +21,7 @@ export function Step({ sequencer, title, description, proPlan }: StepProps) {
             <Link
               href="/pricing"
               className="text-blue-700 underline underline-offset-2"
+              target="_blank"
             >
               plano pro
             </Link>
