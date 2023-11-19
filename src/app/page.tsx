@@ -1,7 +1,7 @@
 import { MaxWidthWrapper } from "./components/ui/maxWidthWrapper/MaxWidthWrapper";
-import { FeatureSection } from "./pages/home/featureSection/FeatureSection";
-import { HeroSection } from "./pages/home/heroSection/HeroSection";
-import { PropositionsSection } from "./pages/home/propositionSection/PropositionSection";
+import { FeatureSection } from "./home/featureSection/FeatureSection";
+import { HeroSection } from "./home/heroSection/HeroSection";
+import { PropositionsSection } from "./home/propositionSection/PropositionSection";
 
 export default function Home() {
   return (
