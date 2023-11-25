@@ -30,6 +30,7 @@
     "react": "^18",
     "react-dom": "^18",
     "shadcn-ui": "^0.4.1",
+    "studio": "^0.13.5",
     "tailwind-merge": "^1.14.0",
     "tailwindcss-animate": "^1.0.7",
     "zod": "^3.22.4"
