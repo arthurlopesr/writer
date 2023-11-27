@@ -28,6 +28,16 @@ export const appRouter = router({
     }
 
     return { success: true }
+  }),
+
+  getUserFiles: publicProcedure.query(async ({ ctx }) => {
+    const { userId } = ctx
+
+    return await db.file.findMany({
+      where: {
+        userId
+      }
+    })
   })
 })
 
