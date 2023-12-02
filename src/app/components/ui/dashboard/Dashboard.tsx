@@ -1,16 +1,30 @@
 'use client'
 
 import { trpc } from "@/app/_trpc/client";
-import { GhostIcon, MessageSquare, Plus, TrashIcon } from "lucide-react";
+import { GhostIcon, Loader2, MessageSquare, Plus, TrashIcon } from "lucide-react";
 import { UploadButton } from "../button/UploadButton";
 import Skeleton from "react-loading-skeleton";
 import Link from "next/link";
-import { format } from "date-fns/format";
 import { Button } from "../button/Button";
+import { useState } from "react";
 
 
 export function Dashboard() {
+  const [currentlyDeletingFile, setCurrentlyDeletingFile] = useState<string | null>(null);
+
+  const utils = trpc.useContext();
   const { data: files, isLoading } = trpc.getUserFiles.useQuery();
+  const { mutate: deleteFile } = trpc.deleteFile.useMutation({
+    onSuccess: () => {
+      utils.getUserFiles.invalidate()
+    },
+    onMutate({ id }) {
+      setCurrentlyDeletingFile(id);
+    },
+    onSettled() {
+      setCurrentlyDeletingFile(null);
+    }
+  });
 
   return (
     <main className="mx-auto w-full max-w-screen-xl md:p-10 px-2.5 md:px-20">
@@ -45,14 +59,21 @@ export function Dashboard() {
                 <div className="px-6 mt-4 grid grid-cols-3 place-items-center py-2 gap-6 text-xs text-zinc-500">
                   <div className="flex items-center gap-2">
                     <Plus className="h-4 w-4" />
-                    {format(new Date(file.createdAt), "MMM yyyy")}
+                    {(new Date(file.createdAt).toLocaleDateString('pt-BR'))}
                   </div>
                   <div className="flex items-center gap-2">
                     <MessageSquare className="h-4 w-4" />
                     mocked
                   </div>
-                  <Button size='ssm' className="w-full" variant='destructive'>
-                    <TrashIcon className="h-4 w-4" />
+                  <Button
+                    onClick={() => deleteFile({ id: file.id })}
+                    size='ssm'
+                    className="w-full"
+                    variant='destructive'
+                  >
+                    {currentlyDeletingFile === file.id
+                      ? <Loader2 className="h-4 w-4 animate-spin" />
+                      : <TrashIcon className="h-4 w-4" />}
                   </Button>
                 </div>
 
