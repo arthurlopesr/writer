@@ -4,6 +4,7 @@ import { Navbar } from "./components/navbar/Navbar";
 import "./globals.css";
 import { cn } from "./utils/cn";
 import { Provider } from "./components/provider/Provider";
+import "react-loading-skeleton/dist/skeleton.css"
 
 const inter = Inter({ subsets: ["latin"] });
 
