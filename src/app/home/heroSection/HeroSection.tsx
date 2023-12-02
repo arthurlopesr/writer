@@ -2,7 +2,7 @@ import { buttonVariants } from "@/app/components/ui/button/Button";
 import { ArrowRight } from "lucide-react";
 import Link from "next/link";
 
-interface HeroSectionProps {}
+interface HeroSectionProps { }
 export function HeroSection(props: HeroSectionProps) {
   return (
     <>
@@ -23,7 +23,6 @@ export function HeroSection(props: HeroSectionProps) {
 
       <Link
         href="/dashboard"
-        target="_blankl"
         className={buttonVariants({
           size: "lg",
           className: "mt-5",
